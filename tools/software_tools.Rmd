@@ -1,6 +1,6 @@
 ---
 title: "MA425/625: Applied Regression"
-subtitle: "Introduction to Software"
+subtitle: "Introduction to R Software"
 author: "Emmanuel Thompson"
 date: "Fall 2021"
 output:
