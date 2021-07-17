@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>MA425/625: Applied Regression</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Emmanuel Thompson" />
+    <script src="software_tools_files/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# MA425/625: Applied Regression
+## Introduction to Software
+### Emmanuel Thompson
+### Fall 2021
+
+---
+
+
+
+
+
+
+
+
+
+
+&lt;style type="text/css"&gt;
+
+body, td {
+   font-size: 20px;
+}
+code.r{
+  font-size: 15px;
+}
+pre {
+  font-size: 20px
+}
+&lt;/style&gt;
+
+
+
+# Introduction to Software
+
+## Topics 
+
+- Introduction to R &amp; RStudio
+- Getting Started
+  - Installing R &amp; RStudio
+  - Understanding your Working Environment
+- Installing R Packages and Managing Package Dependencies
+- R Data Types, Import &amp; Export Data in R 
+  &lt;!-- - Getting Data into R  --&gt;
+    &lt;!-- - Internal Data --&gt;
+    &lt;!-- - External Data --&gt;
+    &lt;!-- - Base Data --&gt;
+  &lt;!-- - Data Export --&gt;
+- Introduction to R Programming
+- Data Manipulation 
+- Data Visualization
+- Data Preprocessing
+- Exploratory Data Analysis
+- Making Reports with RMarkdown
+
+---
+
+## Introduction to R &amp; RStudio
+
+### R
+
+- Free, `\(\color{red}{\text{open-source}}\)`, modern, and versatile statistical software.
+- Programming environment for statistical computing and graphics.
+- Developed by statisticians as a tool for data analysis. 
+  - Currently the best tool for data analysis. 
+- Designed to perform mathematical operations on vectors &amp; matrices.
+- Facilitates rapid development of new tools based on user demand. 
+  &lt;!-- - These tools are distributed as `\(\color{red}{\text{packages}}\)`. --&gt;
+
+&lt;!-- ### Why R? --&gt;
+
+&lt;!-- 1. Free and open-source. --&gt;
+&lt;!-- 2. Free online books to learn R - Larger online community --&gt;
+&lt;!-- 3. Easily create data analysis reports with R Markdown --&gt;
+&lt;!-- 4. Many specialized packages with analysis tools than any other software. --&gt;
+
+&lt;!-- **Note:** --&gt;
+
+&lt;!-- 1. Quite difficult to master than other statistical software. --&gt;
+&lt;!-- 2. Require frequent updates - require maintenance. --&gt;
+
+
+### RStudio
+
+- RStudio is an integrated development environment, or IDE, for R programming.
+- While R is an open source language, RStudio is a commercial product designed to make using R easier.
+  - There  is an open source version of RStudio that is available for free.
+- Before installing RStudio, R must first be installed.
+- It allows users to seamlessly import CSV, Excel, text (txt), SAS (`*.sas7bdat`), SPSS (`*.sav`), and Stata (`*.dta`) files into R without having to write the code to do so.
+
+---
+
+## Getting Started
+
+### Installing R &amp; RStudio
+
+- To install R and RStudio on any computer, download the software from their associated websites.
+  - Click `\(\Rightarrow\)` [The R Project for Statistical Computing](https://www.r-project.org/).
+  - Click `\(\Rightarrow\)` [RStudio](https://rstudio.com/products/rstudio/download/#download).
+- RStudio Cloud is a hosted version of RStudio in the cloud.
+  - Click `\(\Rightarrow\)` [RStudio Cloud](https://rstudio.cloud/).
+
+---
+
+### Understanding your Working Environment
+
+&lt;center&gt;&lt;img src="im_1.png" alt="centered image" width="800" height="500"/&gt;&lt;/center&gt;
+
+---
+
+### Variable &amp; Assignment Operator
+
+&lt;center&gt;&lt;img src="im_5.png" alt="centered image" width="800" height="500"/&gt;&lt;/center&gt;
+
+---
+
+## Installing R Packages and Managing Package Dependencies
+
+- Packages are collection of functions and datasets that add new features to R.
+- Most R packages are available from `CRAN`, the official R repository.
+  - `CRAN` is a network of servers (called mirrors) around the world.
+- Packages on CRAN are checked before they are published, to make sure they don’t contain malicious components. 
+
+### Installing R packages from the Terminal
+
+- To install R packages from the Terminal, follow these steps:
+  1. Open the Terminal.
+  2. Type and run the following command. Make sure to replace package_name1 with an actual package name, such as `ggplot2`:
+  - `install.packages("package_name1")`.
+- You can also install multiple packages at the same time with both the R command line and RStudio. Just separate the individual packages with commas: 
+  - `install.packages("package_name1", "package_name2")`.
+  
+---
+
+### Installing R packages from inside RStudio
+
+- `To install R packages from RStudio, follow these steps:`
+  1. Open RStudio.
+  2. Click on `Tools` from the menu bar and then click on `Install Packages`...:
+  3. In the Install Packages dialog box, type in the package name in the `Packages text box` and click on the `Install button`:
+  &lt;center&gt;&lt;img src="im_3.png" alt="centered image" width="600" height="200"/&gt;&lt;/center&gt; 
+
+There is also a list of common problems when installing packages available on the RStudio support page at https://support.rstudio.com/hc/en-us/articles/200554786-Problem-Installing-Packages.
+
+---
+
+### Introduction to tidyverse
+
+- The power of R comes from numerous packages available for you to use.
+- `tidyverse` is a collection of R packages designed for data science. 
+  - All packages share an underlying design philosophy, grammar, and data structures.
+- Install all the packages in the `tidyverse` by running:
+
+```r
+install.packages("tidyverse")
+```
+- To load the core `tidyverse` and make it available in your current R session run:
+
+```r
+library(tidyverse)
+```
+- Learn more about the `tidyverse` package at https://www.tidyverse.org/.
+  - Core `tidyverse` packages include: `ggplot2, dplyr, tidyr, readr, purr, tibble, stringr, and forcats`.
+
+---
+
+## R Data Types, Import &amp; Export Data in R
+
+&lt;center&gt;&lt;img src="im_4.png" alt="centered image" width="500" height="200"/&gt;&lt;/center&gt; 
+
+
+
+```r
+# Demonstrate in class!
+a &lt;- c(12,3.9,6,-2,-14.4) # numeric vector
+b &lt;- c("chris","danny","kevin") # character vector
+c &lt;- c(FALSE,TRUE,TRUE,FALSE,TRUE,TRUE) #logical vector
+y &lt;- matrix(1:20, nrow=5,ncol=4) # generates 5 x 4 numeric matrix
+dat &lt;- data.frame(id=c(1:4), Color=c("red", "white", "red", NA), # data frame
+                     Passed=c(TRUE,TRUE,TRUE,FALSE))
+mylist &lt;- list(myvector_n=a, myvector_c=b, mymatrix=y, mydataframe=dat)
+gender &lt;- c(rep("male",20), rep("female", 30))
+gender &lt;- factor(gender)
+```
+
+- To explore data types in R, try this free interactive introduction to R course: https://www.datacamp.com/courses/free-introduction-to-r/
+
+---
+  
+### Importing Data into R 
+
+`Working Directory`
+
+- To set working directory via point-and-click:
+  1. Session|Set Working Directory|Choose Directory. In the dialog, highlight the directory and click Open.
+  2. To set working directory with R code, use `setwd()` function; path must be in quotes.
+
+```r
+# setwd("path")
+setwd("C:/Users/ethom/Dropbox/MA425_625/Fall_2021/tools")
+```
+
+---
+
+`Loading Built-in Datasets in R`
+
+- To see the list of pre-loaded data, type the function `data()`:
+
+```r
+data()
+```
+- Load and print data as follow:
+
+```r
+data(Seatbelts)
+head(Seatbelts, 5)
+```
+
+```
+##      DriversKilled drivers front rear   kms PetrolPrice VanKilled law
+## [1,]           107    1687   867  269  9059   0.1029718        12   0
+## [2,]            97    1508   825  265  7685   0.1023630         6   0
+## [3,]           102    1507   806  319  9963   0.1020625        12   0
+## [4,]            87    1385   814  407 10955   0.1008733         8   0
+## [5,]           119    1632   991  454 11823   0.1010197        10   0
+```
+
+
+```r
+data("iris")
+head(iris, 5)
+```
+
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+```
+
+---
+
+`R Base Functions for Importing Data`
+
+
+```r
+# Read tabular data into R
+read.table(file, header = FALSE, sep = "", dec = ".")
+# Read "comma separated value" files (".csv")
+read.csv(file, header = TRUE, sep = ",", dec = ".", ...)
+# Or use read.csv2: variant used in countries that 
+# use a comma as decimal point and a semicolon as field separator.
+read.csv2(file, header = TRUE, sep = ";", dec = ",", ...)
+# Read TAB delimited files
+read.delim(file, header = TRUE, sep = "\t", dec = ".", ...)
+read.delim2(file, header = TRUE, sep = "\t", dec = ",", ...)
+```
+
+- **file:** the path to the file containing the data to be imported into R.
+- **sep:** the field separator character. “**\t**” is used for tab-delimited file.
+- **header:** logical value. If **TRUE**, **read.table()** assumes that your file has a header row, so row 1 is the name of each column. If that’s not the case, you can add the argument **header = FALSE**.
+- **dec:** the character used in the file for decimal points.
+
+
+`Importing Local .txt or a .csv File`
+
+
+```r
+my_data &lt;- read.csv("credit.csv", header = TRUE,  stringsAsFactor = FALSE)
+head(my_data, 4)
+```
+
+```
+##   checking_balance months_loan_duration credit_history              purpose
+## 1           &lt; 0 DM                    6       critical furniture/appliances
+## 2       1 - 200 DM                   48           good furniture/appliances
+## 3          unknown                   12       critical            education
+## 4           &lt; 0 DM                   42           good furniture/appliances
+##   amount savings_balance employment_duration percent_of_income
+## 1   1169         unknown           &gt; 7 years                 4
+## 2   5951        &lt; 100 DM         1 - 4 years                 2
+## 3   2096        &lt; 100 DM         4 - 7 years                 2
+## 4   7882        &lt; 100 DM         4 - 7 years                 2
+##   years_at_residence age other_credit housing existing_loans_count       job
+## 1                  4  67         none     own                    2   skilled
+## 2                  2  22         none     own                    1   skilled
+## 3                  3  49         none     own                    1 unskilled
+## 4                  4  45         none   other                    1   skilled
+##   dependents phone default
+## 1          1   yes      no
+## 2          1    no     yes
+## 3          2    no      no
+## 4          2    no      no
+```
+
+---
+
+`Importing Data from the Internet`
+
+- You can use the functions `read.delim()`, `read.csv()` and `read.table()` to import data from the internet.
+
+
+```r
+test.txt &lt;- read.table("https://stats.idre.ucla.edu/wp-content/uploads/2016/02/test.txt", header=T)
+head(test.txt, 3)
+```
+
+```
+##   make   model mpg weight price
+## 1  AMC Concord  22   2930  4099
+## 2  AMC   Pacer  17   3350  4749
+## 3  AMC  Spirit  22   2640  3799
+```
+
+```r
+test.csv &lt;- read.csv("https://stats.idre.ucla.edu/wp-content/uploads/2016/02/test-1.csv", header=T)
+head(test.csv, 3)
+```
+
+```
+##   make   model mpg weight price
+## 1  amc concord  22   2930  4099
+## 2  amc   oacer  17   3350  4749
+## 3  amc  spirit  22   2640  3799
+```
+
+```r
+test.csv &lt;- read.delim("https://stats.idre.ucla.edu/wp-content/uploads/2016/02/test.txt")
+head(test.csv, 3)
+```
+
+```
+##   make.model.mpg.weight.price
+## 1    AMC Concord 22 2930 4099
+## 2    AMC Pacer   17 3350 4749
+## 3    AMC Spirit  22 2640 3799
+```
+
+---
+
+`Fast Reading of Data From txt|csv Files into R: readr package`
+
+
+```r
+library("readr")
+# Read tab separated values
+read_tsv(file.choose())
+# Read comma (",") separated values
+read_csv(file.choose())
+# Read semicolon (";") separated values
+read_csv2(file.choose())
+```
+
+
+`Reading data From Excel Files (xls|xlsx) into R`
+
+
+```r
+# Use readxl package to read xls|xlsx
+library("readxl")
+my_data &lt;- read_excel(file, sheet = "------") # For sheet specify an index or name.
+
+# Use xlsx package
+library("xlsx")
+my_data &lt;- read.xlsx(file, sheetIndex, header = TRUE)
+```
+
+
+`Exporting Data from R`
+
+- Base functions for writing data: `write.table(), write.csv(), write.csv2()`.
+- Fast writing of data from R to txt|csv files involves using `readr` function: `write_tsv(), write_csv()`. From `xlsx` package we use  the function `write.xlsx()` for Excel files. 
+
+
+```r
+data("iris")
+write.csv(iris, file = "iris1.csv")
+library(readr)
+write_csv(iris, path = "iris2.csv")
+```
+
+```
+## Warning: The `path` argument of `write_csv()` is deprecated as of readr 1.4.0.
+## Please use the `file` argument instead.
+```
+
+
+---
+
+## Introduction to R Programming
+
+- Click `\(\Rightarrow\)` [Easy R Programming Basics](http://www.sthda.com/english/wiki/easy-r-programming-basics).
+- Click `\(\Rightarrow\)`[Basic R Programming](http://r4stats.com/examples/programming/).
+---
+
+## Data Manipulation
+
+`Data Inspection`
+
+  - `head()` for first few rows of a matrix or data frame.
+  - `tail()` for last few rows of a matrix or data frame.
+  - `dim()` for dimension of a matrix or data frame.
+  - `str()`  for displaying the structure of an R object.
+  - `nrow()` for number of rows of a matrix or data frame.
+  - `ncol()` for number of columns of a matrix or data frame.
+  - `summary()` for numeric variables.
+  - `quantile()` for quartiles. 
+  - `table()` for categorical variables.
+  - `sum(is.na())` for counting the number of `NAs` in the entire dataset.
+
+If you need to change the data type for any column, use the following functions:
+
+- `as.character()` converts to a text string.
+- `as.numeric()` converts to a number.
+- `as.factor()` converts to a categorical variable.
+- `as.integer()` converts to an integer.
+  
+---
+
+`Inspect the credit dataset using str()`:
+
+
+```r
+credit_data &lt;- read.csv("credit.csv", header = TRUE,  stringsAsFactor = FALSE)
+dim(credit_data)
+```
+
+```
+## [1] 1000   17
+```
+
+```r
+str(credit_data)
+```
+
+```
+## 'data.frame':	1000 obs. of  17 variables:
+##  $ checking_balance    : chr  "&lt; 0 DM" "1 - 200 DM" "unknown" "&lt; 0 DM" ...
+##  $ months_loan_duration: int  6 48 12 42 24 36 24 36 12 30 ...
+##  $ credit_history      : chr  "critical" "good" "critical" "good" ...
+##  $ purpose             : chr  "furniture/appliances" "furniture/appliances" "education" "furniture/appliances" ...
+##  $ amount              : int  1169 5951 2096 7882 4870 9055 2835 6948 3059 5234 ...
+##  $ savings_balance     : chr  "unknown" "&lt; 100 DM" "&lt; 100 DM" "&lt; 100 DM" ...
+##  $ employment_duration : chr  "&gt; 7 years" "1 - 4 years" "4 - 7 years" "4 - 7 years" ...
+##  $ percent_of_income   : int  4 2 2 2 3 2 3 2 2 4 ...
+##  $ years_at_residence  : int  4 2 3 4 4 4 4 2 4 2 ...
+##  $ age                 : int  67 22 49 45 53 35 53 35 61 28 ...
+##  $ other_credit        : chr  "none" "none" "none" "none" ...
+##  $ housing             : chr  "own" "own" "own" "other" ...
+##  $ existing_loans_count: int  2 1 1 1 2 1 1 1 1 2 ...
+##  $ job                 : chr  "skilled" "skilled" "unskilled" "skilled" ...
+##  $ dependents          : int  1 1 2 2 2 2 1 1 1 1 ...
+##  $ phone               : chr  "yes" "no" "no" "no" ...
+##  $ default             : chr  "no" "yes" "no" "no" ...
+```
+
+---
+
+`dplyr Package`
+
+- We will use the `dplyr` package from the `tidyverse` packages to manipulate data.
+- Here are some of the most useful functions in `dplyr`:
+  - `select:` Choose which columns to include.
+  - `filter:` Filter the data.
+  - `arrange:` Sort the data, by size for continuous variables, by date, or alphabetically.
+  - `group_by:` Group the data by a categorical variable.
+  - `summarize:` Summarize, or aggregate (for each group if following group_by). Often used in conjunction with functions including: mean, median, max, min, sum, n etc.
+  - `mutate:` Create new column(s) in the data, or change existing column(s).
+  - `rename:` Rename column(s).
+  - `bind_rows:` Merge two data frames into one, combining data from columns with the same name.
+  - `glimpse:` Used to see the columns of the dataset and display some portion of the data with respect to each attribute that can fit on a single line.
+
+These functions can be chained together using the operator `%&gt;%` which makes the output of one line of code the input for the next. 
+
+---
+
+`Gapminder data: Excerpt of the Gapminder data on life expectancy, GDP per capita, and population by country`
+
+
+```r
+# install.packages("gapminder")
+library(gapminder)
+library(tidyverse)
+gdf &lt;- as.data.frame(gapminder)
+str(gdf)
+```
+
+```
+## 'data.frame':	1704 obs. of  6 variables:
+##  $ country  : Factor w/ 142 levels "Afghanistan",..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ continent: Factor w/ 5 levels "Africa","Americas",..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+##  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
+##  $ pop      : int  8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
+##  $ gdpPercap: num  779 821 853 836 740 ...
+```
+
+```r
+glimpse(gdf)
+```
+
+```
+## Rows: 1,704
+## Columns: 6
+## $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", ~
+## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, ~
+## $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, ~
+## $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8~
+## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12~
+## $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, ~
+```
+
+
+&lt;!-- https://pop.princeton.edu/events/2021/r-data-wrangling-tidyverse-packages-tidyr-dplyr --&gt;
+
+---
+
+`Filter()`
+
+
+```r
+filter_us &lt;- filter(gapminder, country == "United States")
+head(filter_us)
+```
+
+```
+## # A tibble: 6 x 6
+##   country       continent  year lifeExp       pop gdpPercap
+##   &lt;fct&gt;         &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+## 1 United States Americas   1952    68.4 157553000    13990.
+## 2 United States Americas   1957    69.5 171984000    14847.
+## 3 United States Americas   1962    70.2 186538000    16173.
+## 4 United States Americas   1967    70.8 198712000    19530.
+## 5 United States Americas   1972    71.3 209896000    21806.
+## 6 United States Americas   1977    73.4 220239000    24073.
+```
+
+```r
+# filter(gapminder, lifeExp &lt; 30)
+# filter(gapminder, pop &lt; 1000000) 
+# filter(gapminder, pop &lt; 1000000, year == 2007)
+# filter(gapminder, pop &lt; 1000000 &amp; year == 2007)
+# filter(gapminder, country %in% c("United States", "Canada"), year &gt; 2000)
+```
+
+---
+
+`Filter()`
+
+
+```r
+filter_us_can_1 &lt;- filter(gapminder, country %in% c("United States", "Canada"), year &gt; 2000)
+head(filter_us_can_1)
+```
+
+```
+## # A tibble: 4 x 6
+##   country       continent  year lifeExp       pop gdpPercap
+##   &lt;fct&gt;         &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+## 1 Canada        Americas   2002    79.8  31902268    33329.
+## 2 Canada        Americas   2007    80.7  33390141    36319.
+## 3 United States Americas   2002    77.3 287675526    39097.
+## 4 United States Americas   2007    78.2 301139947    42952.
+```
+
+
+```r
+filter_us_can_2 &lt;- filter(gapminder, country == "United States" | country == "Canada", year &gt; 2000)
+head(filter_us_can_2)
+```
+
+```
+## # A tibble: 4 x 6
+##   country       continent  year lifeExp       pop gdpPercap
+##   &lt;fct&gt;         &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+## 1 Canada        Americas   2002    79.8  31902268    33329.
+## 2 Canada        Americas   2007    80.7  33390141    36319.
+## 3 United States Americas   2002    77.3 287675526    39097.
+## 4 United States Americas   2007    78.2 301139947    42952.
+```
+---
+
+`Select()`
+
+
+```r
+tcont &lt;- select(gapminder, -continent)
+head(tcont)
+```
+
+```
+## # A tibble: 6 x 5
+##   country      year lifeExp      pop gdpPercap
+##   &lt;fct&gt;       &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Afghanistan  1952    28.8  8425333      779.
+## 2 Afghanistan  1957    30.3  9240934      821.
+## 3 Afghanistan  1962    32.0 10267083      853.
+## 4 Afghanistan  1967    34.0 11537966      836.
+## 5 Afghanistan  1972    36.1 13079460      740.
+## 6 Afghanistan  1977    38.4 14880372      786.
+```
+
+
+```r
+tcont &lt;- select(gapminder, lifeExp, pop, gdpPercap, continent)
+head(tcont)
+```
+
+```
+## # A tibble: 6 x 4
+##   lifeExp      pop gdpPercap continent
+##     &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;fct&gt;    
+## 1    28.8  8425333      779. Asia     
+## 2    30.3  9240934      821. Asia     
+## 3    32.0 10267083      853. Asia     
+## 4    34.0 11537966      836. Asia     
+## 5    36.1 13079460      740. Asia     
+## 6    38.4 14880372      786. Asia
+```
+
+---
+
+`Filter() and Select()`
+
+
+```r
+filter_select_1 &lt;- filter(gapminder, year == 2007) %&gt;% select(country, year, lifeExp)
+head(filter_select_1)
+```
+
+```
+## # A tibble: 6 x 3
+##   country      year lifeExp
+##   &lt;fct&gt;       &lt;int&gt;   &lt;dbl&gt;
+## 1 Afghanistan  2007    43.8
+## 2 Albania      2007    76.4
+## 3 Algeria      2007    72.3
+## 4 Angola       2007    42.7
+## 5 Argentina    2007    75.3
+## 6 Australia    2007    81.2
+```
+
+
+```r
+filter_select_2 &lt;- filter(gapminder, country == "United States" | country == "Canada", year &gt; 2000) %&gt;% 
+  select(country, year, lifeExp)
+head(filter_select_2)
+```
+
+```
+## # A tibble: 4 x 3
+##   country        year lifeExp
+##   &lt;fct&gt;         &lt;int&gt;   &lt;dbl&gt;
+## 1 Canada         2002    79.8
+## 2 Canada         2007    80.7
+## 3 United States  2002    77.3
+## 4 United States  2007    78.2
+```
+
+---
+
+`Mutate()`
+
+
+```r
+mut_1 &lt;- mutate(gapminder, popMil = round(pop / 1000000, 1))
+head(mut_1, 3)
+```
+
+```
+## # A tibble: 3 x 7
+##   country     continent  year lifeExp      pop gdpPercap popMil
+##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Afghanistan Asia       1952    28.8  8425333      779.    8.4
+## 2 Afghanistan Asia       1957    30.3  9240934      821.    9.2
+## 3 Afghanistan Asia       1962    32.0 10267083      853.   10.3
+```
+
+`Group Data`
+
+
+```r
+dat &lt;- select(gapminder, country, year, pop) %&gt;% 
+  group_by(country) %&gt;% 
+  mutate(pop_lag = lag(pop), pop_chg = pop - pop_lag, 
+         pop_pctchg = round(pop_chg/pop_lag * 100, 1)) %&gt;%
+  filter(pop_chg &lt; 0) 
+head(dat, 3)
+```
+
+```
+## # A tibble: 3 x 6
+## # Groups:   country [2]
+##   country                 year      pop  pop_lag  pop_chg pop_pctchg
+##   &lt;fct&gt;                  &lt;int&gt;    &lt;int&gt;    &lt;int&gt;    &lt;int&gt;      &lt;dbl&gt;
+## 1 Afghanistan             1982 12881816 14880372 -1998556      -13.4
+## 2 Bosnia and Herzegovina  1992  4256013  4338977   -82964       -1.9
+## 3 Bosnia and Herzegovina  1997  3607000  4256013  -649013      -15.2
+```
+
+---
+
+`Summarize()`
+
+
+```r
+group_by(gapminder, continent, country) %&gt;%
+summarise(avg_le_cc = mean(lifeExp))
+```
+
+```
+## # A tibble: 142 x 3
+## # Groups:   continent [5]
+##    continent country                  avg_le_cc
+##    &lt;fct&gt;     &lt;fct&gt;                        &lt;dbl&gt;
+##  1 Africa    Algeria                       59.0
+##  2 Africa    Angola                        37.9
+##  3 Africa    Benin                         48.8
+##  4 Africa    Botswana                      54.6
+##  5 Africa    Burkina Faso                  44.7
+##  6 Africa    Burundi                       44.8
+##  7 Africa    Cameroon                      48.1
+##  8 Africa    Central African Republic      43.9
+##  9 Africa    Chad                          46.8
+## 10 Africa    Comoros                       52.4
+## # ... with 132 more rows
+```
+
+
+
+```r
+group_by(gapminder, continent) %&gt;%
+summarise(avg_le_cc = mean(lifeExp))
+```
+
+```
+## # A tibble: 5 x 2
+##   continent avg_le_cc
+##   &lt;fct&gt;         &lt;dbl&gt;
+## 1 Africa         48.9
+## 2 Americas       64.7
+## 3 Asia           60.1
+## 4 Europe         71.9
+## 5 Oceania        74.3
+```
+---
+
+`Summarize()`
+
+
+```r
+group_by(gapminder, continent, year) %&gt;%
+summarise_at(c("lifeExp", "pop"), funs(min, median, max, mean, sd, IQR))
+```
+
+```
+## # A tibble: 60 x 14
+## # Groups:   continent [5]
+##    continent  year lifeExp_min pop_min lifeExp_median pop_median lifeExp_max
+##    &lt;fct&gt;     &lt;int&gt;       &lt;dbl&gt;   &lt;int&gt;          &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Africa     1952        30     60011           38.8   2668124.        52.7
+##  2 Africa     1957        31.6   61325           40.6   2885790.        58.1
+##  3 Africa     1962        32.8   65345           42.6   3145210         60.2
+##  4 Africa     1967        34.1   70787           44.7   3473692.        61.6
+##  5 Africa     1972        35.4   76595           47.0   3945594.        64.3
+##  6 Africa     1977        36.8   86796           49.3   4522666         67.1
+##  7 Africa     1982        38.4   98593           50.8   5668228.        69.9
+##  8 Africa     1987        39.9  110812           51.6   6635612.        71.9
+##  9 Africa     1992        23.6  125911           52.4   7140388.        73.6
+## 10 Africa     1997        36.1  145608           52.8   7805422.        74.8
+## # ... with 50 more rows, and 7 more variables: pop_max &lt;int&gt;,
+## #   lifeExp_mean &lt;dbl&gt;, pop_mean &lt;dbl&gt;, lifeExp_sd &lt;dbl&gt;, pop_sd &lt;dbl&gt;,
+## #   lifeExp_IQR &lt;dbl&gt;, pop_IQR &lt;dbl&gt;
+```
+
+
+
+---
+
+`Summarize()`
+
+
+```r
+filter(gapminder, year == 2007) %&gt;%
+group_by(continent) %&gt;%
+summarise(year = mean(year), ncountries = n(),
+avg_country_le = mean(lifeExp), sd_country_le = sd(lifeExp))
+```
+
+```
+## # A tibble: 5 x 5
+##   continent  year ncountries avg_country_le sd_country_le
+##   &lt;fct&gt;     &lt;dbl&gt;      &lt;int&gt;          &lt;dbl&gt;         &lt;dbl&gt;
+## 1 Africa     2007         52           54.8         9.63 
+## 2 Americas   2007         25           73.6         4.44 
+## 3 Asia       2007         33           70.7         7.96 
+## 4 Europe     2007         30           77.6         2.98 
+## 5 Oceania    2007          2           80.7         0.729
+```
+
+
+
+```r
+filter(gapminder, year == 1952) %&gt;%
+group_by(continent) %&gt;%
+summarise(year = mean(year), ncountries = n(),
+avg_country_le = mean(lifeExp), sd_country_le = sd(lifeExp)) 
+```
+
+```
+## # A tibble: 5 x 5
+##   continent  year ncountries avg_country_le sd_country_le
+##   &lt;fct&gt;     &lt;dbl&gt;      &lt;int&gt;          &lt;dbl&gt;         &lt;dbl&gt;
+## 1 Africa     1952         52           39.1         5.15 
+## 2 Americas   1952         25           53.3         9.33 
+## 3 Asia       1952         33           46.3         9.29 
+## 4 Europe     1952         30           64.4         6.36 
+## 5 Oceania    1952          2           69.3         0.191
+```
+
+---
+
+## Data Visualization
+
+- __ggplot2__ is a plotting system developed by Hadley Wickham in 2005.
+-  It implements the graphics scheme described in the book _The Grammar of Graphics_ by Leland Wilkinson. 
+- It has two primary functions for creating graphics, __qplot()__ and __ggplot()__.
+- It uses a standardized system of syntax that makes it flexible to understand.
+- It takes care of other features of graphics such as colors, scales, axis, legend position etc.
+
+__data, aesthetics and geometric shapes__
+
+
+```r
+ggplot(data, aes(x=, y=, color=, shape=, size=)) + 
+geom_point(), or geom_histogram(), or geom_boxplot(), etc.
+```
+
+- The __data__ must be a data frame.
+- The __aes()__ function maps columns of the data frame to **aes**thetic properties of **geom**etric shapes to be plotted. Components are added with  **+**.
+&lt;!-- - __ggplot()__ defines the plot; the __geoms__ show the __data__; each component is added with  **+**. --&gt;
+
+---
+
+- We will use the `ggplot2` package from the `tidyverse` packages to visualize data.
+
+`Scatter Plot`
+
+
+```r
+library(tidyverse)
+filter(gapminder, year == 2007) %&gt;%
+ggplot(aes(x=lifeExp, y=gdpPercap)) + 
+  geom_point(shape = 3, size = 2) + 
+  labs(title="GDP Per Capita vs Life Expectancy", x="Years", y="Dollars")
+```
+
+![](software_tools_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
+
+---
+
+
+```r
+filter(gapminder, year == 2007) %&gt;%
+ggplot(aes(x=lifeExp, y=gdpPercap, color = continent)) + 
+  geom_point(shape = 3, size = 2) +
+  labs(title="GDP Per Capita vs Life Expectancy", x="Years", y="Dollars")
+```
+
+![](software_tools_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
+
+---
+
+
+```r
+filter(gapminder, year == 2007) %&gt;%
+ggplot(aes(x=lifeExp, y=gdpPercap, color = continent)) + 
+  geom_point(shape = 3, size = 2) + 
+  geom_smooth(method= "lm", se = FALSE) +
+  labs(title="GDP Per Capita vs Life Expectancy", x="Years", y="Dollars")
+```
+
+![](software_tools_files/figure-html/unnamed-chunk-33-1.png)&lt;!-- --&gt;
+
+---
+
+`Scatter Plot with facet_wrap = Credit History`
+
+- Use of __facet_wrap__
+
+
+```r
+ggplot(credit_data, aes(x=age, y=amount)) + 
+  geom_point() + 
+  facet_wrap(~ credit_history) + 
+  labs(title="Amount vs. Age", x="Age", y="Amount")
+```
+
+![](software_tools_files/figure-html/unnamed-chunk-34-1.png)&lt;!-- --&gt;
+
+---
+
+`Histogram`
+
+
+```r
+ggplot(credit_data, aes(x = months_loan_duration)) +
+  geom_histogram(aes(y = ..count..), binwidth = 5) +
+labs(title="Histogram", x="Months (Loan Duration)", y="Frequency")
+```
+
+![](software_tools_files/figure-html/unnamed-chunk-35-1.png)&lt;!-- --&gt;
+
+---
+
+&lt;!-- ## Note  --&gt;
+&lt;!-- - Use facet_wrap() if you want to facet by one variable and have ggplot2 control the layout.  --&gt;
+&lt;!--   - Example: + facet_wrap( ~ var)  --&gt;
+&lt;!-- - Use facet_grid() if you want to facet by one and/or two variables and control layout yourself.  --&gt;
+&lt;!-- - Examples:  --&gt;
+
+&lt;!--   + facet_grid(. ~ var1) - facets in columns  --&gt;
+
+&lt;!--   + facet_grid(var1 ~ .) - facets in rows  --&gt;
+
+&lt;!--   + facet_grid(var1 ~ var2) - facets in rows and columns --&gt;
+
+` facet_grid histograms`
+
+
+```r
+ggplot(credit_data, aes(x=amount, y = stat(density))) + 
+  geom_histogram(aes(y = ..density..), binwidth = 500) + 
+  facet_grid(default ~ job) + 
+  labs(title="Histogram", x="Amount", y="Density")
+```
+
+![](software_tools_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
+
+
+---
+
+`Boxplot`
+
+
+```r
+ggplot(credit_data, aes(x=job, y=amount)) +
+geom_boxplot() + 
+labs(title="Boxplot", x="Job", y="Amount")
+```
+
+![](software_tools_files/figure-html/unnamed-chunk-37-1.png)&lt;!-- --&gt;
+
+---
+
+`Boxplot`
+
+
+```r
+ggplot(credit_data, aes(x=checking_balance, y=amount)) +
+geom_boxplot() + 
+facet_grid(job ~ .) + 
+labs(title="Boxplot", x="Checking Balance", y="Amount")
+```
+
+![](software_tools_files/figure-html/unnamed-chunk-38-1.png)&lt;!-- --&gt;
+
+---
+
+`Bar chart`
+
+
+```r
+ggplot(credit_data, aes(job)) +
+geom_bar() +
+labs(title="Frequency Distribution of Jobs", x="Job", y="Frequency")
+```
+
+![](software_tools_files/figure-html/unnamed-chunk-39-1.png)&lt;!-- --&gt;
+
+---
+
+## Explorating Data
+
+`Summary of Functions for Exploring Data in R`
+
+&lt;center&gt;&lt;img src="im_6.png" alt="centered image" width="800" height="500"/&gt;&lt;/center&gt;
+
+&lt;!-- - `dim()` --&gt;
+&lt;!--   - `nrow()` --&gt;
+&lt;!--   - `ncol()` --&gt;
+&lt;!-- - `str()` --&gt;
+&lt;!-- - `summary()` --&gt;
+&lt;!-- - `names()` --&gt;
+&lt;!-- - `head()` --&gt;
+&lt;!-- - `tail()` --&gt;
+&lt;!-- - `edit()` --&gt;
+
+---
+
+`Exploratory Data Analysis (EDA)`
+
+- `EDA` is an approach used to summarise and visualise the main characteristics of a dataset.
+- It focuses on:
+  - Exploring data by understanding its structure and variables.
+    - Developing an intuition about the dataset.
+    - Considering how the dataset came into existence.
+    - Deciding how to investigate by providing a formal statistical method.
+    - Extending better insights about the dataset.
+    - Formulating a hypothesis that leads to new data collection.
+    - Handling any missing values.
+    - Investigating with more formal statistical methods.
+- Some of the graphical techniques used by EDA are:
+  - `Box plot`
+  - `Histogram`
+  - `Scatter plot`
+  - `Bar chart`
+  - `Density plots`
+  - `Pareto chart`
+
+---
+
+`Functions for Obtaining Data Summary in R`
+
+&lt;center&gt;&lt;img src="im_7.png" alt="centered image" width="800" height="500"/&gt;&lt;/center&gt;
+
+
+---
+
+`Function for Finding Missing Entities in a Dataset in R`
+
+&lt;center&gt;&lt;img src="im_8.png" alt="centered image" width="800" height="500"/&gt;&lt;/center&gt;
+
+---
+
+## Generating Reports with R Markdown
+
+- R Markdown is used to generating high-quality reports combining both text and code that can be shared with an audience. 
+- It can also be used for executing and saving code.
+- These links: [link 1](https://rmarkdown.rstudio.com/lesson-15.html), [link 2](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) contain R Markdown cheat sheet (Make sure you know how to use R Markdown) and [link 3](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf). 
+- There is an R Notebook which is also an R Markdown document. Take a look at this [link](https://bookdown.org/yihui/rmarkdown/notebook.html) for information on R Notebook.
+&lt;!-- - [Mathematics in R Markdown](https://www.calvin.edu/~rpruim/courses/s341/S17/from-class/MathinRmd.html). --&gt;
+- [Commonly Used Symbols in R Markdown](https://people.ok.ubc.ca/jpither/modules/Symbols_markdown.html#statistics_notation).
+
+**R Markdown Basic Requirements**
+
+- Install the following R packages: 
+  - `install.packages("rmarkdown", dependencies=TRUE)`
+  - `install.packages("tidyverse", dependencies=TRUE)`
+  - `install.packages("tinytex", dependencies=TRUE)`
+- Run the following in RStudio to install TeX on your computer (this may take some time):
+  -   `tinytex::install_tinytex()`
+- restart RStudio once you are done.
+
+---
+
+&lt;!-- ### knitr --&gt;
+
+&lt;!-- - The knitr package is designed to create a transparent engine for dynamic report generation with R.  --&gt;
+&lt;!-- - The installation procedure also requires the execution of the following command: `install.packages("knitr")` --&gt;
+
+### Working with R Markdown
+
+- The following steps are used to start with R Markdown:
+  1. Open RStudio IDE.
+  2. Install the respective packages needed.
+  3. Create a new R Markdown document as follows: select the Menu option by navigating to `File | New File | R Markdown`.
+- The following screenshot shows the lookup of the required Markdown page:
+&lt;center&gt;&lt;img src="im_2.png" alt="centered image" width="800" height="400"/&gt;&lt;/center&gt;
+
+
+---
+
+## Stay up to date
+
+- RStudio Community - https://community.rstudio.com/
+- Developer Blog - https://rstudio.link/developer_blog
+- R Views Blog - https://rstudio.link/rviews_blog
+- TensorFlow Blog - https://rstudio.link/tensorflow_blog
+- Twitter - https://rstudio.link/twitter
+- GitHub - https://rstudio.link/github
+- LinkedIn - https://rstudio.link/linkedin
+- YouTube - https://rstudio.link/youtube
+- Facebook - https://rstudio.link/facebook
+- Cookbook for R - http://www.cookbook-r.com/
+- Quick R - https://www.statmethods.net/management/subset.html
+- ggplot2: Elegant Graphics for Data Analysis - https://ggplot2-book.org/collective-geoms.html
+- RStudio Cheatsheets - https://rstudio.com/resources/cheatsheets/
+- Graphs - https://socviz.co/groupfacettx.html
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"countIncrementalSlides": true,
+"highlightLines": true,
+"highlightStyle": "github",
+"ratio": "16:10"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
