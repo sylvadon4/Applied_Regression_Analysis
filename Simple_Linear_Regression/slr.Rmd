@@ -1,0 +1,69 @@
+---
+title: "MA425/652: Applied Regression Analysis - Fall 2021"
+subtitle: "Linear Regression with One Predictor Variable"
+author: "Emmanuel Thompson"
+date: "7-17-2021"
+output:
+  pdf_document: 
+    toc: yes
+    number_sections: yes
+    highlight: haddock
+    fig_caption: yes
+---
+
+<!-- \fontsize{12}{22} -->
+<!-- \fontseries{b} -->
+<!-- \selectfont -->
+\setcounter{section}{1}
+
+
+## Relations Between Variables
+
+## Regression Models \& Their Uses
+
+## Simple Linear Regression Model with Distribution of Error Terms Unspecified
+### Formal Statement of Model
+- The Basic Model (\textcolor{red}{one predictor} with \textcolor{red}{linear regression function}) is written as:
+
+\begin{equation}
+Y_i = \beta_0 + \beta_1 X_i + \epsilon_i \mbox{    for } i = 1, 2, \cdots, n. 
+\end{equation}
+
+- where: 
+  - $Y_i=$ value of the response variable in the $i$th trial (Unknown).
+  - $X_i=$ value of the predictor variable in the $i$th trial (Constant).
+  - $\beta_0$ \& $\beta_1$ are unknown parameters.
+  - $\epsilon_i=$ random error term. 
+    - **Mean:** E$\{\epsilon_i\}=0.$
+    - **Variance:** $\sigma^2\{\epsilon_i\}=\sigma^2.$
+    - **Covariance:** $\sigma\{\epsilon_i, \epsilon_j\}=0$ for all $i,j: i \neq j.$
+ 
+### Important Features of Model (1)
+
+1. $Y_i$ comprises of two components:
+  - Constant Term $\implies$ $\beta_0 + \beta_1 X_i.$
+  - Error Term: $\implies$ $\epsilon_i$. 
+  - Therefore $Y_i$ is a \textcolor{red}{random variable}.
+2. Since E$\{\epsilon_i\}=0$, it follows that E$\{Y_i\} = \beta_0 + \beta_1X_i$.
+3. 
+
+## Data for Regression Analysis
+
+- Observational Data
+- Experimental Data
+- Completely Randomized Design
+
+### Observational Data
+
+- Data obtained not through experimental studies. 
+- Observational studies do not control the explanatory or predictor variable(s) of interest. 
+
+**Example:**
+
+- _Company officials wished to study the relation between age of employee ($X$) and number of days of illness last year ($Y$)._ 
+- __The needed data for use in the regression analysis were obtained from personnel records. Such data are observational data since the explanatory variable, age, is not controlled.__
+
+
+### Experimental Data
+### Completely Randomized Design
+
